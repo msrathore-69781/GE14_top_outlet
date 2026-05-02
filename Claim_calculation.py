@@ -27,7 +27,7 @@ metrics["Distt. SKU CM"] = grp.apply(
     lambda x: x.loc[x[COL_SALES_QTY_CM].notna(), COL_MATERIAL_CODE].nunique()
 )
 metrics["Distt. SKU CM >6EA"] = grp.apply(
-    lambda x: x.loc[x[COL_SALES_QTY_CM] > 6, COL_MATERIAL_CODE].nunique()
+    lambda x: x.loc[x[COL_SALES_QTY_CM] > 3, COL_MATERIAL_CODE].nunique()
 )
 metrics["TO Base"]       = grp[COL_TO_BASE].sum()
 metrics["T.O. Achieved"] = grp[COL_TO_ACHIEVED].sum()
@@ -53,7 +53,7 @@ df["% TO Achievement"] = df.apply(
 )
 
 def range_selling_reward(row):
-    if row["Distt. SKU CM >6EA"] <= 6:
+    if row["Distt. SKU CM >6EA"] <= 3:
         return 0
     p = row["Distt. SKU CM >6EA"] - row["Average SKU Count"]
     if p >= 20:   return 2000
