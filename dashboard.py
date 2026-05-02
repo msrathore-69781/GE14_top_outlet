@@ -35,10 +35,6 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-
-# 
-
-
 @st.cache_data
 def load_data(path="Dashboard_Backend.xlsx"):
     raw = pd.read_excel(path, engine="openpyxl")
@@ -149,14 +145,14 @@ st.markdown('<div class="section-title">Table 1 — SKU & T.O. Performance</div>
 
 t1 = wdf[[
     "Retailer Code", "Retailer Name",
-    "SKU Base", "Distt. SKU CM", "Distt. SKU CM >3EA",
+    "SKU Base", "Distt. SKU CM", "Distt. SKU CM >6EA",
     "Avg SKU Count", "SKU Remaining Target",
     "TO Base", "TO Achieved", "Avg TO", "% TO Achievement"
 ]].copy()
 
 t1["SKU Base"]             = t1["SKU Base"].apply(fmt_num)
 t1["Distt. SKU CM"]        = t1["Distt. SKU CM"].apply(fmt_num)
-t1["Distt. SKU CM >3EA"]   = t1["Distt. SKU CM >3EA"].apply(fmt_num)
+t1["Distt. SKU CM >6EA"]   = t1["Distt. SKU CM >6EA"].apply(fmt_num)
 t1["Avg SKU Count"]        = t1["Avg SKU Count"].apply(fmt_num)
 t1["SKU Remaining Target"] = t1["SKU Remaining Target"].apply(fmt_num)
 t1["TO Base"]              = t1["TO Base"].apply(fmt_inr)
